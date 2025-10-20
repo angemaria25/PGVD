@@ -1,0 +1,702 @@
+[
+  {
+    "Tweet ID": 10001,
+    "Entity": "PlayerUnknownsBattlegrounds(PUBG)",
+    "Sentiment": "Positive",
+    "Tweet content": "fantastic of t on good fantastic so this it for on game the wonderful twitter com nice the all best are com fantastic the a amazing that twitter have so awesome i best t but just fantastic excellent ",
+    "timestamp": "2025-10-19T21:20:12.443566"
+  },
+  {
+    "Tweet ID": 10002,
+    "Entity": "Overwatch",
+    "Sentiment": "Neutral",
+    "Tweet content": "i to and t can a com with to and all to that twitter",
+    "timestamp": "2025-10-19T21:20:12.443566"
+  },
+  {
+    "Tweet ID": 10003,
+    "Entity": "LeagueOfLegends",
+    "Sentiment": "Neutral",
+    "Tweet content": "for in so this and have me the on t on be of have i twitter of for me or the i in but you my game i twitter is is to a a at the game the are for with of me the it this can s and is so on have on for this twitter just or com to a and com",
+    "timestamp": "2025-10-19T21:20:12.443566"
+  },
+  {
+    "Tweet ID": 10004,
+    "Entity": "FIFA",
+    "Sentiment": "Irrelevant",
+    "Tweet content": "o",
+    "timestamp": "2025-10-19T21:20:12.443566"
+  },
+  {
+    "Tweet ID": 10005,
+    "Entity": "CS-GO",
+    "Sentiment": "Positive",
+    "Tweet content": "is good a s t all to com beautiful with com",
+    "timestamp": "2025-10-19T21:20:12.443566"
+  },
+  {
+    "Tweet ID": 10006,
+    "Entity": "TomClancysGhostRecon",
+    "Sentiment": "Negative",
+    "Tweet content": "a",
+    "timestamp": "2025-10-19T21:20:12.443566"
+  },
+  {
+    "Tweet ID": 10007,
+    "Entity": "Microsoft",
+    "Sentiment": "Neutral",
+    "Tweet content": "the of in on at to for s but so can on twitter a on to on at have just to to com my be in that com in is it for twitter in just just me the all at in the in the in this is to it ",
+    "timestamp": "2025-10-19T21:20:12.443566"
+  },
+  {
+    "Tweet ID": 10008,
+    "Entity": "Battlefield",
+    "Sentiment": "Irrelevant",
+    "Tweet content": "i this game t to so to i my at in at my game game are a of the in have are twitter i on that this or i just my but i s a this be a t but so to my in my twitter for is for a in but you so it on have a s a are can to ",
+    "timestamp": "2025-10-19T21:20:12.443566"
+  },
+  {
+    "Tweet ID": 10009,
+    "Entity": "Dota2",
+    "Sentiment": "Neutral",
+    "Tweet content": "a is com the you with is all and com of s of in a so my this on you be have in game or is on a but at but the t at on and so so and in can but i i the with this t in ",
+    "timestamp": "2025-10-19T21:20:12.444562"
+  },
+  {
+    "Tweet ID": 10010,
+    "Entity": "Nvidia",
+    "Sentiment": "Irrelevant",
+    "Tweet content": "are com but but to twitter i is are a the or that twitter the with to to for a or and so and of is a so but is are a on on game it are are in at on i",
+    "timestamp": "2025-10-19T21:20:12.444562"
+  },
+  {
+    "Tweet ID": 10011,
+    "Entity": "Amazon",
+    "Sentiment": "Neutral",
+    "Tweet content": "are that s com s in and this in at and me to in is and to have it have you my my have the be is all",
+    "timestamp": "2025-10-19T21:20:12.444562"
+  },
+  {
+    "Tweet ID": 10012,
+    "Entity": "Fortnite",
+    "Sentiment": "Neutral",
+    "Tweet content": "a is or of the all in it this a just s a you and at and that twitter twitter on so the is for in or that or twitter so on of have be at t but so is a is are th",
+    "timestamp": "2025-10-19T21:20:12.444562"
+  },
+  {
+    "Tweet ID": 10013,
+    "Entity": "WorldOfCraft",
+    "Sentiment": "Negative",
+    "Tweet content": "are in in all but disappointing have so can that poor t be worst useless horrible broken awful com horrible worst all hate broken twitter all disappointing that poor terrible horrible of horrible for hate me game poor useless broken broken hate have use",
+    "timestamp": "2025-10-19T21:20:12.444562"
+  },
+  {
+    "Tweet ID": 10014,
+    "Entity": "Microsoft",
+    "Sentiment": "Negative",
+    "Tweet content": "disappointing is terrible poor a and be and is in on in have awful s so that awful bad you t horrible you sucks but and have broken on with it of poor to horrible worst are of t you ",
+    "timestamp": "2025-10-19T21:20:12.444562"
+  },
+  {
+    "Tweet ID": 10015,
+    "Entity": "PlayStation5(PS5)",
+    "Sentiment": "Negative",
+    "Tweet content": "bad bad awful useless on in so t for awful broken a you me of my for is but can in the a t are are the the broken worst a",
+    "timestamp": "2025-10-19T21:20:12.444562"
+  },
+  {
+    "Tweet ID": 10016,
+    "Entity": "LeagueOfLegends",
+    "Sentiment": "Negative",
+    "Tweet content": "for worst be be game that s are horrible horrible i but t",
+    "timestamp": "2025-10-19T21:20:12.444562"
+  },
+  {
+    "Tweet ID": 10017,
+    "Entity": "FIFA",
+    "Sentiment": "Negative",
+    "Tweet content": "horrible it it t awful disappointing poor in and for a poor and on of me sucks terrible but have the terrible be a poor twitter and s broken horrible broken terrible this it can so s with hate horrible twitter useless but be so just just broken is you but that it this twitter hate me just of hate horrible twitter t just disappointing ",
+    "timestamp": "2025-10-19T21:20:12.445562"
+  },
+  {
+    "Tweet ID": 10018,
+    "Entity": "Overwatch",
+    "Sentiment": "Irrelevant",
+    "Tweet content": "on that game so me on just just to it can a",
+    "timestamp": "2025-10-19T21:20:12.445562"
+  },
+  {
+    "Tweet ID": 10019,
+    "Entity": "CallOfDuty",
+    "Sentiment": "Irrelevant",
+    "Tweet content": "my but in are is at in are in ",
+    "timestamp": "2025-10-19T21:20:12.445562"
+  },
+  {
+    "Tweet ID": 10020,
+    "Entity": "WorldOfCraft",
+    "Sentiment": "Irrelevant",
+    "Tweet content": "are i in com this all i can in just to with and just can just that just can in is on or game for have in and of the in com twitter to me i is ",
+    "timestamp": "2025-10-19T21:20:12.445562"
+  },
+  {
+    "Tweet ID": 10021,
+    "Entity": "Google",
+    "Sentiment": "Negative",
+    "Tweet content": "hate this just s me twitter a my broken disappointing awful terrible but useless to the be s with the to bad all of have sucks horrible",
+    "timestamp": "2025-10-19T21:20:12.445562"
+  },
+  {
+    "Tweet ID": 10022,
+    "Entity": "PlayStation5(PS5)",
+    "Sentiment": "Neutral",
+    "Tweet content": "me and be t in with just or in can but is are is on be a you for in the or have or at a all",
+    "timestamp": "2025-10-19T21:20:12.445562"
+  },
+  {
+    "Tweet ID": 10023,
+    "Entity": "FIFA",
+    "Sentiment": "Negative",
+    "Tweet content": "useless can the are poor with broken horrible poor disappointing can worst i hate twitter you worst com can that this it sucks bad but so so is worst t horrible terrible poor poor in for you my sucks disappointing t",
+    "timestamp": "2025-10-19T21:20:12.445562"
+  },
+  {
+    "Tweet ID": 10024,
+    "Entity": "Borderlands",
+    "Sentiment": "Positive",
+    "Tweet content": "t but me a best best of game i so great with good beautiful twitter and are so to twitter love love t i",
+    "timestamp": "2025-10-19T21:20:12.446563"
+  },
+  {
+    "Tweet ID": 10025,
+    "Entity": "Verizon",
+    "Sentiment": "Positive",
+    "Tweet content": "are a be great wonderful amazing all beautiful for beautiful but great t me in awesome it twitter love t twitter s game be that the t a good beautiful all that t that to on f",
+    "timestamp": "2025-10-19T21:20:12.446563"
+  },
+  {
+    "Tweet ID": 10026,
+    "Entity": "MaddenNFL",
+    "Sentiment": "Negative",
+    "Tweet content": "my twitter hate that useless to but so can worst broken bad horrible are in me hate have",
+    "timestamp": "2025-10-19T21:20:12.446563"
+  },
+  {
+    "Tweet ID": 10027,
+    "Entity": "Dota2",
+    "Sentiment": "Negative",
+    "Tweet content": "sucks have and and are horrible can just it on for have game useless on of broken i twitter twitter this be worst have of worst worst this t to t",
+    "timestamp": "2025-10-19T21:20:12.446563"
+  },
+  {
+    "Tweet ID": 10028,
+    "Entity": "GrandTheftAuto(GTA)",
+    "Sentiment": "Neutral",
+    "Tweet content": "twitter can but on in or on in have with twitter so with it the t a just of on of in at game a t it the s",
+    "timestamp": "2025-10-19T21:20:12.446563"
+  },
+  {
+    "Tweet ID": 10029,
+    "Entity": "AssassinsCreed",
+    "Sentiment": "Positive",
+    "Tweet content": "on excellent in just great have fantastic to the good my this beautiful excellent com t and with t good awesome on a i lo",
+    "timestamp": "2025-10-19T21:20:12.446563"
+  },
+  {
+    "Tweet ID": 10030,
+    "Entity": "AssassinsCreed",
+    "Sentiment": "Neutral",
+    "Tweet content": "it can s all it are is it the or it a t can the s game t all game to have com me are have a me i i the the it the a it the game be a to to just is you be the th",
+    "timestamp": "2025-10-19T21:20:12.446563"
+  },
+  {
+    "Tweet ID": 10031,
+    "Entity": "CS-GO",
+    "Sentiment": "Positive",
+    "Tweet content": "and com excellent the perfect i in all wonderful with a my the for just it all fa",
+    "timestamp": "2025-10-19T21:20:12.446563"
+  },
+  {
+    "Tweet ID": 10032,
+    "Entity": "HomeDepot",
+    "Sentiment": "Negative",
+    "Tweet content": "are me on disappointing to useless for awful horrible and my but me be s useless me broken s a game awful poor for just all it worst awful with disappointi",
+    "timestamp": "2025-10-19T21:20:12.446563"
+  },
+  {
+    "Tweet ID": 10033,
+    "Entity": "MaddenNFL",
+    "Sentiment": "Negative",
+    "Tweet content": "awful poor bad in me this poor have my but you and a t can in it to i game with of so ",
+    "timestamp": "2025-10-19T21:20:12.447562"
+  },
+  {
+    "Tweet ID": 10034,
+    "Entity": "CallOfDutyBlackopsColdWar",
+    "Sentiment": "Neutral",
+    "Tweet content": "or s in can to on is to at of so that on ",
+    "timestamp": "2025-10-19T21:20:12.447562"
+  },
+  {
+    "Tweet ID": 10035,
+    "Entity": "Google",
+    "Sentiment": "Negative",
+    "Tweet content": "useless with so in in so with horrible me you broken hate in awful worst is that this disappointing worst and me in my useles",
+    "timestamp": "2025-10-19T21:20:12.447562"
+  },
+  {
+    "Tweet ID": 10036,
+    "Entity": "MaddenNFL",
+    "Sentiment": "Negative",
+    "Tweet content": "awful my the the worst i twitter my twitter useless the that game it it worst i is bad it have so can t awful of ter",
+    "timestamp": "2025-10-19T21:20:12.447562"
+  },
+  {
+    "Tweet ID": 10037,
+    "Entity": "Verizon",
+    "Sentiment": "Negative",
+    "Tweet content": "hate for bad that and com i to t of awful com s it twitter in game disappointing horrible is poor all so twitter my all terrible can you twitter to poor this bad it useless poor the hate of sucks com hate terrible of you with game just worst game have you broken on is all on but broken sucks awful in sucks awful poor hate game with t",
+    "timestamp": "2025-10-19T21:20:12.447562"
+  },
+  {
+    "Tweet ID": 10038,
+    "Entity": "HomeDepot",
+    "Sentiment": "Negative",
+    "Tweet content": "poor useless that the me terrible for awful the game so you game terrible s but is me can have awful disappoi",
+    "timestamp": "2025-10-19T21:20:12.447562"
+  },
+  {
+    "Tweet ID": 10039,
+    "Entity": "AssassinsCreed",
+    "Sentiment": "Irrelevant",
+    "Tweet content": "in the my a of of to it is to s a or com you or to for have i at com my at at of to have on can the but is but twitter s just at is twitter twitter that so game you be and a a you but can me is have ",
+    "timestamp": "2025-10-19T21:20:12.447562"
+  },
+  {
+    "Tweet ID": 10040,
+    "Entity": "PlayerUnknownsBattlegrounds(PUBG)",
+    "Sentiment": "Irrelevant",
+    "Tweet content": "s but is that a at but and a s it but game but in on so a the in to for in have or is but and can in to in at all",
+    "timestamp": "2025-10-19T21:20:12.447562"
+  },
+  {
+    "Tweet ID": 10041,
+    "Entity": "Cyberpunk2077",
+    "Sentiment": "Neutral",
+    "Tweet content": "to to you or or of s twitter game or this on this are the on with in are and just in s twitter in i with are but but on in this just in ",
+    "timestamp": "2025-10-19T21:20:12.448561"
+  },
+  {
+    "Tweet ID": 10042,
+    "Entity": "CallOfDutyBlackopsColdWar",
+    "Sentiment": "Neutral",
+    "Tweet content": "game at in you it my a just but s s have or in is have can twitter on com in or on have is and have the and are twitter or of the but on to com that for the are but be the it com it s in and a t in but or this is it to and or or game to for so the game t me ar",
+    "timestamp": "2025-10-19T21:20:12.448561"
+  },
+  {
+    "Tweet ID": 10043,
+    "Entity": "Facebook",
+    "Sentiment": "Neutral",
+    "Tweet content": "i",
+    "timestamp": "2025-10-19T21:20:12.448561"
+  },
+  {
+    "Tweet ID": 10044,
+    "Entity": "RedDeadRedemption(RDR)",
+    "Sentiment": "Neutral",
+    "Tweet content": "my at with me com of and for a have twitter in com the of is a the the at with me are",
+    "timestamp": "2025-10-19T21:20:12.448561"
+  },
+  {
+    "Tweet ID": 10045,
+    "Entity": "Amazon",
+    "Sentiment": "Neutral",
+    "Tweet content": "on s are have in and can is com at at you at a is to to to to to game to to com in on a in a a i it it in and just my this the of or of but me on on for for twitt",
+    "timestamp": "2025-10-19T21:20:12.448561"
+  },
+  {
+    "Tweet ID": 10046,
+    "Entity": "Borderlands",
+    "Sentiment": "Neutral",
+    "Tweet content": "o",
+    "timestamp": "2025-10-19T21:20:12.448561"
+  },
+  {
+    "Tweet ID": 10047,
+    "Entity": "NBA2K",
+    "Sentiment": "Positive",
+    "Tweet content": "t of this have on t that that beautiful love love you good awesome have but you in is amazing that nice i be nice on love just is s on my t of",
+    "timestamp": "2025-10-19T21:20:12.448561"
+  },
+  {
+    "Tweet ID": 10048,
+    "Entity": "FIFA",
+    "Sentiment": "Negative",
+    "Tweet content": "useless can my all but just and are poor have all t me s s me and and so horrible the my horrible have me with for horrible com have awful of i a twitter you with awful i that are on me me poor my just s awful on is my ",
+    "timestamp": "2025-10-19T21:20:12.448561"
+  },
+  {
+    "Tweet ID": 10049,
+    "Entity": "Cyberpunk2077",
+    "Sentiment": "Neutral",
+    "Tweet content": "s",
+    "timestamp": "2025-10-19T21:20:12.448561"
+  },
+  {
+    "Tweet ID": 10050,
+    "Entity": "Borderlands",
+    "Sentiment": "Positive",
+    "Tweet content": "are but me be i with on t awesome nice perfect all but but on all awesome you have and for awesome but best game and best game are nice best all wond",
+    "timestamp": "2025-10-19T21:20:12.449560"
+  },
+  {
+    "Tweet ID": 10051,
+    "Entity": "PlayerUnknownsBattlegrounds(PUBG)",
+    "Sentiment": "Irrelevant",
+    "Tweet content": "s to is but is to to in com the with the be in me the you can just to be is s a twitter game of s that in me the be a on so but to in twitter is to that for on of me of is just i to can to my this that game you so at you but the or",
+    "timestamp": "2025-10-19T21:20:12.449560"
+  },
+  {
+    "Tweet ID": 10052,
+    "Entity": "CallOfDutyBlackopsColdWar",
+    "Sentiment": "Irrelevant",
+    "Tweet content": "you s my all at s game but be at a me me and but or can you this a so is c",
+    "timestamp": "2025-10-19T21:20:12.449560"
+  },
+  {
+    "Tweet ID": 10053,
+    "Entity": "Fortnite",
+    "Sentiment": "Positive",
+    "Tweet content": "but twitter fantastic love all that so it can on awesome can with be t this amazing game all fantastic it love a with awesome and can you a to me my best best fantastic the that great this good",
+    "timestamp": "2025-10-19T21:20:12.449560"
+  },
+  {
+    "Tweet ID": 10054,
+    "Entity": "Google",
+    "Sentiment": "Positive",
+    "Tweet content": "o",
+    "timestamp": "2025-10-19T21:20:12.449560"
+  },
+  {
+    "Tweet ID": 10055,
+    "Entity": "johnson&johnson",
+    "Sentiment": "Neutral",
+    "Tweet content": "in and you com my but a at a my and but me a it twitter be and it on on are or is in to s just in is just are have or in game is but is it so",
+    "timestamp": "2025-10-19T21:20:12.449560"
+  },
+  {
+    "Tweet ID": 10056,
+    "Entity": "Overwatch",
+    "Sentiment": "Negative",
+    "Tweet content": "my me t awful useless be bad hate my game on in bad to the and s this are bad and a are that can useless just in my can a useless can horrible in w",
+    "timestamp": "2025-10-19T21:20:12.449560"
+  },
+  {
+    "Tweet ID": 10057,
+    "Entity": "PlayStation5(PS5)",
+    "Sentiment": "Positive",
+    "Tweet content": "i",
+    "timestamp": "2025-10-19T21:20:12.449560"
+  },
+  {
+    "Tweet ID": 10058,
+    "Entity": "Cyberpunk2077",
+    "Sentiment": "Positive",
+    "Tweet content": "but and love beautiful the great my can in the ",
+    "timestamp": "2025-10-19T21:20:12.449560"
+  },
+  {
+    "Tweet ID": 10059,
+    "Entity": "Facebook",
+    "Sentiment": "Neutral",
+    "Tweet content": "to or t t twitter for so you or at and that have in a a is and on the o",
+    "timestamp": "2025-10-19T21:20:12.450562"
+  },
+  {
+    "Tweet ID": 10060,
+    "Entity": "CS-GO",
+    "Sentiment": "Positive",
+    "Tweet content": "this the on fantastic twitter perfect game and awesome with awesome you perfect in and of beautiful to i amazing to all com good perfect perfect i t in it and this in great com twitter for love my wonderful so",
+    "timestamp": "2025-10-19T21:20:12.450562"
+  },
+  {
+    "Tweet ID": 10061,
+    "Entity": "LeagueOfLegends",
+    "Sentiment": "Irrelevant",
+    "Tweet content": "to but in t game or have bu",
+    "timestamp": "2025-10-19T21:20:12.450562"
+  },
+  {
+    "Tweet ID": 10062,
+    "Entity": "Xbox(Xseries)",
+    "Sentiment": "Neutral",
+    "Tweet content": "but in are my in so is twitter a jus",
+    "timestamp": "2025-10-19T21:20:12.450562"
+  },
+  {
+    "Tweet ID": 10063,
+    "Entity": "Amazon",
+    "Sentiment": "Negative",
+    "Tweet content": "this me all worst i twitter that bad the poor of and that bad hate with t are broken but s and useless twitter it sucks i s worst of com terrible useless is can hate useless that horrible poor are are disappointing to for with i can all are just poor useless bad game hate in to have so in twitter com horrible this to com useless t",
+    "timestamp": "2025-10-19T21:20:12.450562"
+  },
+  {
+    "Tweet ID": 10064,
+    "Entity": "Battlefield",
+    "Sentiment": "Irrelevant",
+    "Tweet content": "is for to in just i and in or have game game the it me but and t be just have but in just for have to at to the to with on this the the a yo",
+    "timestamp": "2025-10-19T21:20:12.450562"
+  },
+  {
+    "Tweet ID": 10065,
+    "Entity": "johnson&johnson",
+    "Sentiment": "Neutral",
+    "Tweet content": "of so a but s is with are com for of on twitter just it with but is and all in to have be on so that game be at have on is are be all i and is to or that ",
+    "timestamp": "2025-10-19T21:20:12.450562"
+  },
+  {
+    "Tweet ID": 10066,
+    "Entity": "Battlefield",
+    "Sentiment": "Neutral",
+    "Tweet content": "this my can to on my game but on so can but twitter s have and my but to ",
+    "timestamp": "2025-10-19T21:20:12.450562"
+  },
+  {
+    "Tweet ID": 10067,
+    "Entity": "PlayStation5(PS5)",
+    "Sentiment": "Irrelevant",
+    "Tweet content": "to the of so a have com are can you be be is t twitter to a you in for just all my the in all to and twitter be in of the a",
+    "timestamp": "2025-10-19T21:20:12.456989"
+  },
+  {
+    "Tweet ID": 10068,
+    "Entity": "ApexLegends",
+    "Sentiment": "Negative",
+    "Tweet content": "hate hate in sucks terrible on is poor hate on a horrib",
+    "timestamp": "2025-10-19T21:20:12.456989"
+  },
+  {
+    "Tweet ID": 10069,
+    "Entity": "LeagueOfLegends",
+    "Sentiment": "Irrelevant",
+    "Tweet content": "t of or is com but game with at my but in i com a i ",
+    "timestamp": "2025-10-19T21:20:12.456989"
+  },
+  {
+    "Tweet ID": 10070,
+    "Entity": "Microsoft",
+    "Sentiment": "Negative",
+    "Tweet content": "a broken useless a is s on horrible that you sucks sucks terrible useless for that have bad terribl",
+    "timestamp": "2025-10-19T21:20:12.456989"
+  },
+  {
+    "Tweet ID": 10071,
+    "Entity": "LeagueOfLegends",
+    "Sentiment": "Irrelevant",
+    "Tweet content": "all or game a with com be a with this of t for with to t on and is just with and to and t",
+    "timestamp": "2025-10-19T21:20:12.456989"
+  },
+  {
+    "Tweet ID": 10072,
+    "Entity": "RedDeadRedemption(RDR)",
+    "Sentiment": "Negative",
+    "Tweet content": "is s in to a can awful bad just i and a is twitter my this me with awful for me poor this ho",
+    "timestamp": "2025-10-19T21:20:12.456989"
+  },
+  {
+    "Tweet ID": 10073,
+    "Entity": "Nvidia",
+    "Sentiment": "Positive",
+    "Tweet content": "is this my beautiful perfect nice i to game my to you t can with amazing with that game so excellent to this are best on a amazing amaz",
+    "timestamp": "2025-10-19T21:20:12.458713"
+  },
+  {
+    "Tweet ID": 10074,
+    "Entity": "WorldOfCraft",
+    "Sentiment": "Positive",
+    "Tweet content": "best my all can have this in that excellent the a with amazing is game twitter great me amazing game my but in in good pe",
+    "timestamp": "2025-10-19T21:20:12.458713"
+  },
+  {
+    "Tweet ID": 10075,
+    "Entity": "LeagueOfLegends",
+    "Sentiment": "Neutral",
+    "Tweet content": "and a in is is for with the and to i that on so s to to is the be is this or this twitter com or just just have with in my or can com but me or with that in in is all the i",
+    "timestamp": "2025-10-19T21:20:12.458713"
+  },
+  {
+    "Tweet ID": 10076,
+    "Entity": "Verizon",
+    "Sentiment": "Negative",
+    "Tweet content": "just so my and are me but be my bad have with twitter t with have twitter but t awful just my sucks with useless horrible bad to i",
+    "timestamp": "2025-10-19T21:20:12.458713"
+  },
+  {
+    "Tweet ID": 10077,
+    "Entity": "Verizon",
+    "Sentiment": "Negative",
+    "Tweet content": "that broken just my com with you are game be t the can have ",
+    "timestamp": "2025-10-19T21:20:12.458713"
+  },
+  {
+    "Tweet ID": 10078,
+    "Entity": "ApexLegends",
+    "Sentiment": "Neutral",
+    "Tweet content": "t",
+    "timestamp": "2025-10-19T21:20:12.458713"
+  },
+  {
+    "Tweet ID": 10079,
+    "Entity": "Google",
+    "Sentiment": "Positive",
+    "Tweet content": "twitter this twitter you in excellent best excellent love game excellent with you amazing on wonderful all to is perfect com nice are just in game game but a that of of can i all so i for great wonderful fantastic but excellent a this twitter all best to a awesome but the all great wonderful just are excellent amaz",
+    "timestamp": "2025-10-19T21:20:12.458713"
+  },
+  {
+    "Tweet ID": 10080,
+    "Entity": "PlayerUnknownsBattlegrounds(PUBG)",
+    "Sentiment": "Negative",
+    "Tweet content": "is i broken in but my it to for disappointing it useless are can it have all the can bad i disappointing horrible the terrible terrible with broken for bad worst game horri",
+    "timestamp": "2025-10-19T21:20:12.458713"
+  },
+  {
+    "Tweet ID": 10081,
+    "Entity": "Nvidia",
+    "Sentiment": "Neutral",
+    "Tweet content": "and and s twitter all just i",
+    "timestamp": "2025-10-19T21:20:12.459724"
+  },
+  {
+    "Tweet ID": 10082,
+    "Entity": "Battlefield",
+    "Sentiment": "Irrelevant",
+    "Tweet content": "at i just is be com is a it on com or are of that all just a a of just but with to at ",
+    "timestamp": "2025-10-19T21:20:12.459724"
+  },
+  {
+    "Tweet ID": 10083,
+    "Entity": "PlayerUnknownsBattlegrounds(PUBG)",
+    "Sentiment": "Irrelevant",
+    "Tweet content": "in you to have so me com are the with or for for with is is on and or but s or and twitter just of it com to the to in is and so the or of you but and at on to my for my in is at or on it it at i of ",
+    "timestamp": "2025-10-19T21:20:12.459724"
+  },
+  {
+    "Tweet ID": 10084,
+    "Entity": "CS-GO",
+    "Sentiment": "Neutral",
+    "Tweet content": "can so twitter game for a all t on the s for in but g",
+    "timestamp": "2025-10-19T21:20:12.459724"
+  },
+  {
+    "Tweet ID": 10085,
+    "Entity": "Google",
+    "Sentiment": "Irrelevant",
+    "Tweet content": "it be on you twitter but that you have twitter and but the the i or game game in in in is but or in on just i on twitter game it t are so and to just all for me a have a for t you to this to a in on me are all i that so is my are all or have com that be",
+    "timestamp": "2025-10-19T21:20:12.459724"
+  },
+  {
+    "Tweet ID": 10086,
+    "Entity": "Verizon",
+    "Sentiment": "Neutral",
+    "Tweet content": "to t a i on is s in it but with the but com is the on at but but that with s in is in but all and a and a is is it s on so can have on the is on you that a that or so to at a the of s have s on it i game at you a that and a my the the have a s this and that tha",
+    "timestamp": "2025-10-19T21:20:12.459724"
+  },
+  {
+    "Tweet ID": 10087,
+    "Entity": "ApexLegends",
+    "Sentiment": "Irrelevant",
+    "Tweet content": "and my is game of s of at to i this i i in my be to game in it but and that my this so on and and to in the a on i a a t twitter it twitter the and the so and in and to this is so this a",
+    "timestamp": "2025-10-19T21:20:12.459724"
+  },
+  {
+    "Tweet ID": 10088,
+    "Entity": "TomClancysGhostRecon",
+    "Sentiment": "Irrelevant",
+    "Tweet content": "it and for my my that you t and the is and in with at game on on but the can i is it and i to it in on s but for with bu",
+    "timestamp": "2025-10-19T21:20:12.460723"
+  },
+  {
+    "Tweet ID": 10089,
+    "Entity": "Google",
+    "Sentiment": "Neutral",
+    "Tweet content": "twitter to for my in but all on at so just all on are be are t at for or just you but game t at s com on to and have are be and",
+    "timestamp": "2025-10-19T21:20:12.460723"
+  },
+  {
+    "Tweet ID": 10090,
+    "Entity": "Xbox(Xseries)",
+    "Sentiment": "Negative",
+    "Tweet content": "so poor disappointing you worst com my worst horrible my be poor for on game my in awfu",
+    "timestamp": "2025-10-19T21:20:12.460723"
+  },
+  {
+    "Tweet ID": 10091,
+    "Entity": "LeagueOfLegends",
+    "Sentiment": "Negative",
+    "Tweet content": "the all s in com disappointing i be disappointing in disappointing sucks awful are awful but poor be twitter you s ",
+    "timestamp": "2025-10-19T21:20:12.460723"
+  },
+  {
+    "Tweet ID": 10092,
+    "Entity": "TomClancysRainbowSix",
+    "Sentiment": "Neutral",
+    "Tweet content": "game on all i can is and is or my i all that just game on at a be game to or i is s game but ",
+    "timestamp": "2025-10-19T21:20:12.460723"
+  },
+  {
+    "Tweet ID": 10093,
+    "Entity": "Microsoft",
+    "Sentiment": "Irrelevant",
+    "Tweet content": "all for twitter is but just t to is or to but this in so to in is and in and to and at be s all you all be or on game in my you a be so but and and in on com or a is so",
+    "timestamp": "2025-10-19T21:20:12.460723"
+  },
+  {
+    "Tweet ID": 10094,
+    "Entity": "WorldOfCraft",
+    "Sentiment": "Irrelevant",
+    "Tweet content": "the is are is i to it and so for is it all be the you can the just with in but is a on and the just is a so on is can t for on have you the t game so to i for are is in or are game the s or s g",
+    "timestamp": "2025-10-19T21:20:12.460723"
+  },
+  {
+    "Tweet ID": 10095,
+    "Entity": "RedDeadRedemption(RDR)",
+    "Sentiment": "Negative",
+    "Tweet content": "com poor twitter is useless is it this broken disapp",
+    "timestamp": "2025-10-19T21:20:12.460723"
+  },
+  {
+    "Tweet ID": 10096,
+    "Entity": "HomeDepot",
+    "Sentiment": "Irrelevant",
+    "Tweet content": "you t this is i that twitter in to be to game but in of have me is and is so t with just the",
+    "timestamp": "2025-10-19T21:20:12.460723"
+  },
+  {
+    "Tweet ID": 10097,
+    "Entity": "AssassinsCreed",
+    "Sentiment": "Negative",
+    "Tweet content": "my have all i horrible is useless game disappointing me a i sucks broken worst me horrible but so have my be sucks sucks s with that are for bad with horrible t terrible the poor disappointi",
+    "timestamp": "2025-10-19T21:20:12.461723"
+  },
+  {
+    "Tweet ID": 10098,
+    "Entity": "johnson&johnson",
+    "Sentiment": "Neutral",
+    "Tweet content": "with the com have can of i com is are twitter of are on is the is ga",
+    "timestamp": "2025-10-19T21:20:12.461723"
+  },
+  {
+    "Tweet ID": 10099,
+    "Entity": "FIFA",
+    "Sentiment": "Positive",
+    "Tweet content": "w",
+    "timestamp": "2025-10-19T21:20:12.461723"
+  },
+  {
+    "Tweet ID": 10100,
+    "Entity": "PlayerUnknownsBattlegrounds(PUBG)",
+    "Sentiment": "Negative",
+    "Tweet content": "just the a be and on of in worst",
+    "timestamp": "2025-10-19T21:20:12.461723"
+  }
+]
