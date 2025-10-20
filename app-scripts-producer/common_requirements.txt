@@ -1,0 +1,24 @@
+# Core del pipeline
+kafka-python
+pyspark
+pandas
+numpy
+pyarrow
+fastparquet
+pyhdfs
+
+# Estadística y visualización
+scikit-learn
+scipy
+statsmodels
+matplotlib
+seaborn
+plotly
+
+# Texto clásico
+nltk
+textblob
+gensim
+
+# Dashboard
+streamlit
