@@ -1,5 +1,5 @@
 """
-Data Generator para PGVD - Generador de tweets sintéticos basado en distribuciones estadísticas reales
+Data Generator - Generador de tweets sintéticos basado en distribuciones estadísticas reales
 Respeta las características estadísticas del dataset original (twitter_training.csv y twitter_validation.csv)
 """
 
@@ -106,9 +106,9 @@ class SyntheticDataGenerator:
         
         # Palabras adicionales para generar variedad
         self.positive_words = ['love', 'great', 'awesome', 'excellent', 'amazing', 'fantastic', 
-                               'wonderful', 'perfect', 'best', 'good', 'nice', 'beautiful']
+                                'wonderful', 'perfect', 'best', 'good', 'nice', 'beautiful']
         self.negative_words = ['hate', 'bad', 'terrible', 'awful', 'horrible', 'worst', 
-                               'poor', 'disappointing', 'useless', 'broken', 'sucks']
+                                'poor', 'disappointing', 'useless', 'broken', 'sucks']
         self.neutral_words = ['is', 'the', 'a', 'and', 'or', 'but', 'in', 'on', 'at', 'to']
         
         self.tweet_id_counter = 10000
