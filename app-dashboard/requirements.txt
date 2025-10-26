@@ -1,0 +1,6 @@
+streamlit==1.25.0
+pandas
+kafka-python
+plotly
+pyarrow
+fastparquet
