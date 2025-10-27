@@ -142,9 +142,9 @@ with tabs[1]:
         st.warning(f"No se pudieron leer los datos de HDFS todavía: {e}")
 
 # --- TAB 3: Métricas ---
-with tabs[2]:
-    st.header("Métricas generales del sistema")
-    st.metric("Mensajes en buffer Kafka (live)", len(st.session_state["live_data"]))
-    st.write("- Spark UI → [http://localhost:8080](http://localhost:8080)")
-    st.write("- HDFS NameNode → [http://localhost:9870](http://localhost:9870)")
-    st.write("- Kafka Broker → `kafka:9092` (interno Docker)")
+#with tabs[2]:
+    #st.header("Métricas generales del sistema")
+    #st.metric("Mensajes en buffer Kafka (live)", len(st.session_state["live_data"]))
+    #st.write("- Spark UI → [http://localhost:8080](http://localhost:8080)")
+    #st.write("- HDFS NameNode → [http://localhost:9870](http://localhost:9870)")
+    #st.write("- Kafka Broker → `kafka:9092` (interno Docker)")
