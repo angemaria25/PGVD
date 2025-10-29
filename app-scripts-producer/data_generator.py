@@ -18,7 +18,7 @@ from kafka import KafkaProducer
 from scipy.stats import truncnorm
 # Configurar logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
+logger = logging.getLogger(__name__) 
 
 # Configuración de Kafka desde variables de entorno
 KAFKA_BROKER = os.getenv("KAFKA_BROKER", "localhost:9092")
