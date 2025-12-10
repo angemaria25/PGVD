@@ -1,4 +1,4 @@
-version: "3.8"
+# version: "3.8"
 
 services:
   zookeeper:
@@ -152,6 +152,7 @@ services:
       - HDFS_OUTPUT_PATH=hdfs://namenode:9000/user/sentiment_analysis/streaming_results
     volumes:
       - ./app-dashboard:/app
+      - ./data:/app/data
 
 volumes:
   hadoop_namenode:
