@@ -44,7 +44,7 @@ if __name__ == "__main__":
 
         # 2. Convertir texto a minúsculas y eliminar caracteres especiales en el contenido del tweet
         df_transformed = df_cleaned.withColumn("tweet_content_cleaned", lower(col("tweet_content"))) \
-                                   .withColumn("tweet_content_cleaned", regexp_replace(col("tweet_content_cleaned"), "[^a-z\\s]", ""))
+                                .withColumn("tweet_content_cleaned", regexp_replace(col("tweet_content_cleaned"), "[^a-z\\s]", ""))
 
         print("Schema después de la limpieza y transformación:")
         df_transformed.printSchema()
