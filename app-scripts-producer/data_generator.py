@@ -18,10 +18,12 @@ from kafka import KafkaProducer
 from scipy.stats import truncnorm
 # Configurar logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__) 
+logger = logging.getLogger(__name__)
 
 # Configuración de Kafka desde variables de entorno
-KAFKA_BROKER = os.getenv("KAFKA_BROKER", "localhost:9092")
+KAFKA_BROKER = os.getenv("KAFKA_BROKER", "kafka-1:9092,kafka-2:9092")
+env_brokers = os.getenv("KAFKA_BROKER", "kafka:9092")
+KAFKA_BROKERS_LIST = env_brokers.split(',')  # <--- Separamos por coma
 KAFKA_TOPIC = os.getenv("KAFKA_TOPIC", "raw_tweets")
 TARGET_RATE_PER_SECOND = float(os.getenv("TARGET_RATE_PER_SECOND", "5.0")) # Para controlar la velocidad
 DATA_DIR = os.getenv("DATA_DIR", "./data") # Directorio para el CSV de entrenamiento/validación
@@ -317,7 +319,7 @@ def main():
     # Productor Kafka persistente (se inicializa una vez)
     try:
         producer = KafkaProducer(
-            bootstrap_servers=kafka_broker,
+            bootstrap_servers=KAFKA_BROKERS_LIST,
             value_serializer=lambda v: json.dumps(v).encode('utf-8')
         )
         logger.info(f"Conectado a Kafka en {kafka_broker}")

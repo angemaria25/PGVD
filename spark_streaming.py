@@ -5,7 +5,7 @@ from pyspark.sql.types import StructType, StructField, StringType # Importar cou
 import os
 
 # --- Configuración de Kafka y HDFS ---
-KAFKA_BROKER = os.getenv("KAFKA_BROKER", "kafka:9092")
+KAFKA_BROKER = os.getenv("KAFKA_BROKER", "kafka-1:9092,kafka-2:9092")
 KAFKA_TOPIC = os.getenv("KAFKA_TOPIC", "raw_tweets")
 HDFS_OUTPUT_PATH = os.getenv("HDFS_OUTPUT_PATH", "hdfs://namenode:9000/user/sentiment_analysis/streaming_results")
 
@@ -15,7 +15,7 @@ if __name__ == "__main__":
         .appName("TwitterSentimentStreaming") \
         .master("spark://spark-master:7077") \
         .config("spark.hadoop.fs.defaultFS", "hdfs://namenode:9000") \
-        .config("spark.sql.shuffle.partitions", "2") \
+        .config("spark.hadoop.dfs.replication", "2") \
         .getOrCreate()
 
     spark.sparkContext.setLogLevel("WARN")
