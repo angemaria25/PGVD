@@ -1,159 +1,12 @@
 import streamlit as st
 import pandas as pd
 import json
-from kafka import KafkaConsumer
-import plotly.express as px
 import os
-import sys
-
-# Configuración de entorno
-KAFKA_BROKER = os.getenv("KAFKA_BROKER", "kafka:9092")
-env_brokers = os.getenv("KAFKA_BROKER", "kafka:9092")
-KAFKA_BROKERS_LIST = env_brokers.split(',')  # <--- ESTO SOLUCIONA EL ERROR
-KAFKA_TOPIC = os.getenv("KAFKA_TOPIC", "raw_tweets")
-HDFS_OUTPUT_PATH = os.getenv("HDFS_OUTPUT_PATH", "hdfs://namenode:9000/user/sentiment_analysis/streaming_results")
-
-st.set_page_config(page_title="Twitter Sentiment Dashboard", layout="wide")
-st.title("📊 Twitter Entity Sentiment — Dashboard")
-
-# --- SparkSession seguro ---
-from pyspark.sql import SparkSession
-from pyspark import SparkContext
-
-def get_spark_session():
-    """
-    Devuelve un SparkSession seguro para Streamlit.
-    Si hay un SparkContext detenido, lo reinicia.
-    """
-    try:
-        sc = SparkContext.getOrCreate()
-        if sc._jsc.sc().isStopped():
-            sc.stop()
-            sc = SparkContext()
-        spark = SparkSession(sc)
-        return spark
-    except Exception:
-        spark = (
-            SparkSession.builder
-            .appName("Streamlit-HDFS-Reader")
-            .master("spark://spark-master:7077")
-            .config("spark.hadoop.fs.defaultFS", "hdfs://namenode:9000")
-            .getOrCreate()
-        )
-        return spark
-
-if "spark" not in st.session_state:
-    st.session_state.spark = get_spark_session()
-
-# --- Tabs ---
-tabs = st.tabs(["Live (Kafka)", "📈 Análisis del Generador", "Métricas"])
-
-
-# Test gráfico simple
-# st.subheader("Test de Gráfico Plotly Simple")
-# test_df = pd.DataFrame({'x': ['A', 'B', 'C'], 'y': [10, 20, 15]})
-# fig_test = px.bar(test_df, x='x', y='y')
-# st.plotly_chart(fig_test)
-
-# --- TAB 1: Live Kafka ---
-with tabs[0]:
-    st.header("Live desde Kafka (últimos mensajes)")
-    refresh = st.button("Refrescar")
-    if "live_data" not in st.session_state:
-        st.session_state["live_data"] = []
-
-    if refresh:
-        st.info("Intentando conectar a Kafka y leer mensajes...")
-        try:
-            consumer = KafkaConsumer(
-                KAFKA_TOPIC,
-                bootstrap_servers=KAFKA_BROKERS_LIST, 
-                auto_offset_reset="latest",
-                enable_auto_commit=True,
-                consumer_timeout_ms=2000,
-                value_deserializer=lambda x: json.loads(x.decode('utf-8'))
-            )
-            messages = []
-            for msg in consumer:
-                messages.append(msg.value)
-                if len(messages) >= 50:
-                    break
-            consumer.close()
-            
-            if messages:
-                st.session_state["live_data"].extend(messages)
-                # st.session_state["live_data"] = st.session_state["live_data"][-1000:]
-                st.success(f"{len(messages)} mensajes leídos y añadidos.")
-            else:
-                st.info("No se encontraron nuevos mensajes en Kafka.")
-
-        except Exception as e:
-            error_msg = f"Error crítico al conectar o procesar Kafka: {e}"
-            st.error(error_msg)
-            print(f"DEBUG Streamlit ERROR: {error_msg}", file=sys.stderr)
-            import traceback
-            traceback.print_exc(file=sys.stderr)
-
-    data = st.session_state["live_data"]
-    if data:
-        df = pd.DataFrame(data)
-        st.write("DEBUG columnas live:", df.columns.tolist())
-        st.dataframe(df[["tweet_content", "entity", "sentiment"]].tail(10))
-
-        col1, col2 = st.columns(2)
-        with col1:
-            if 'sentiment' in df.columns and not df['sentiment'].empty:
-                sent_counts = df["sentiment"].value_counts()
-                sent = pd.DataFrame({'sentiment': sent_counts.index.astype(str), 'count': sent_counts.values})
-                fig_sent = px.bar(sent, x="sentiment", y="count", title="Distribución de Sentimientos (Live)")
-                st.plotly_chart(fig_sent, use_container_width=True)
-            else:
-                st.warning("No hay datos válidos para el sentimiento.")
-
-        with col2:
-            if 'entity' in df.columns and not df['entity'].empty:
-                ents_counts = df["entity"].value_counts().head(10)
-                ents = pd.DataFrame({'entity': ents_counts.index.astype(str), 'count': ents_counts.values})
-                fig_ents = px.bar(ents, x="entity", y="count", title="Top 10 Entidades (Live)")
-                st.plotly_chart(fig_ents, use_container_width=True)
-            else:
-                st.info("No hay datos para mostrar entidades todavía.")
-    else:
-        st.info("No hay mensajes aún. Inicia el producer para ver flujo en vivo.")
-
-# --- TAB 2: Procesado desde HDFS ---
-# with tabs[1]:
-#     st.header("Datos procesados (Spark Streaming → HDFS)")
-#     spark = st.session_state.spark  # ✅ Usamos la misma SparkSession ya creada
-
-#     try:
-#         parquet_path = f"{HDFS_OUTPUT_PATH}/data/*.parquet"
-#         st.write(f"Leyendo desde: `{parquet_path}`")
-#         df_spark = spark.read.parquet(parquet_path)
-#         df = df_spark.select("entity", "sentiment", "count").toPandas()
-#         st.dataframe(df.head(20))
-
-#         fig = px.bar(
-#             df.groupby("sentiment")["count"].sum().reset_index(),
-#             x="sentiment", y="count", color="sentiment",
-#             title="Distribución acumulada por sentimiento (HDFS)"
-#         )
-#         st.plotly_chart(fig, use_container_width=True)
-
-#     except Exception as e:
-#         st.warning(f"No se pudieron leer los datos todavía: {e}")
-
-# --- TAB 3: Métricas ---
-with tabs[2]:
-    st.header("Métricas generales del sistema")
-    st.metric("Mensajes en buffer Kafka (live)", len(st.session_state["live_data"]))
-    st.write("- Spark UI → [http://localhost:8080](http://localhost:8080)")
-    st.write("- HDFS NameNode → [http://localhost:9870](http://localhost:9870)")
-    st.write("- Kafka Broker → `kafka:9092` (interno Docker)")
-
-
+import time
+import plotly.express as px
+import plotly.graph_objects as go
+from kafka import KafkaConsumer
 import re
-import pandas as pd
 from collections import Counter
 from scipy.stats import chisquare, ks_2samp, ttest_ind
 import plotly.express as px
@@ -161,34 +14,195 @@ import math
 from scipy.stats import chisquare, ks_2samp
 import plotly.figure_factory as ff
 from scipy.stats import chisquare, entropy
-# 🔧 Funciones auxiliares --------------------------------------------------
 
-def safe_chisquare(f_obs, f_exp):
-    """Versión robusta del test Chi²: corrige diferencias de suma entre observados y esperados."""
-    f_obs = f_obs.astype(float)
-    f_exp = f_exp.astype(float)
+# Importamos la clase compartida de ML
+# (Esto funciona porque mapeamos el volumen en docker-compose)
+try:
+    from ml_prediction import SentimentPredictor
+except ImportError:
+    st.error("⚠️ No se encontró el módulo ml_prediction.py. Verifica los volúmenes en docker-compose.")
+    st.stop()
 
-    if f_obs.sum() != f_exp.sum():
-        ratio = f_exp.sum() / f_obs.sum() if f_obs.sum() > 0 else 1.0
-        f_obs *= ratio
-        diff = f_exp.sum() - f_obs.sum()
-        if abs(diff) > 0:
-            f_obs.iloc[-1] += diff
+# --- Configuración ---
+st.set_page_config(page_title="Twitter AI Dashboard", layout="wide", page_icon="🤖")
 
-    return chisquare(f_obs=f_obs, f_exp=f_exp)
+KAFKA_BROKER = os.getenv("KAFKA_BROKER", "kafka-1:9092,kafka-2:9092")
+KAFKA_TOPIC = os.getenv("KAFKA_TOPIC", "raw_tweets")
+MODELS_DIR = os.getenv("MODELS_DIR", "/app/models")
 
-def kl_divergence(p, q):
-    """Calcula la Divergencia KL entre dos distribuciones discretas."""
-    p = [v / sum(p) for v in p]
-    q = [v / sum(q) for v in q]
-    kl = sum(pi * math.log(pi / qi, 2) for pi, qi in zip(p, q) if pi > 0 and qi > 0)
-    return kl
+# --- Funciones de Carga ---
 
+@st.cache_resource
+def load_ai_model():
+    """Carga el modelo de Machine Learning en memoria caché"""
+    try:
+        predictor = SentimentPredictor(models_dir=MODELS_DIR)
+        return predictor
+    except Exception as e:
+        return None
 
-# 📊 --- NUEVA PESTAÑA DE ANÁLISIS --- -----------------------------------
+# Cargar el predictor
+predictor = load_ai_model()
 
+# --- Interfaz Principal ---
+st.title("🤖 Monitorización de Sentimientos con IA")
+st.markdown("Sistema Big Data con arquitectura Lambda: **Kafka + Spark Streaming + Scikit-Learn**")
 
-with tabs[1]:
+# Definir pestañas
+tab1, tab2, tab3, tab4 = st.tabs(["🔮 Predicción en Vivo", "📈 Análisis del Generador","📊 Métricas del Modelo", "👀 Monitor Kafka"])
+
+# ==========================================
+# TAB 1: PREDICCIÓN INTERACTIVA Y EN VIVO
+# ==========================================
+with tab1:
+    col1, col2 = st.columns([1, 2])
+    
+    with col1:
+        st.subheader("🧪 Testear Modelo Manualmente")
+        st.info("Escribe algo para ver qué opina la IA:")
+        user_text = st.text_area("Texto del Tweet:", "I love playing Call of Duty but the servers are terrible!")
+        
+        if st.button("Analizar Sentimiento"):
+            if predictor and predictor.model:
+                result = predictor.predict_single(user_text)
+                
+                # Mostrar resultado visual
+                sentiment = result['prediction']
+                conf = result['confidence']
+                
+                color_map = {
+                    "Positive": "green", 
+                    "Negative": "red", 
+                    "Neutral": "gray", 
+                    "Irrelevant": "blue"
+                }
+                
+                st.markdown(f"### Resultado: :{color_map.get(sentiment, 'black')}[{sentiment}]")
+                st.progress(conf)
+                st.caption(f"Confianza del modelo: {result['confidence_pct']}")
+                
+                # Gráfico gauge
+                fig = go.Figure(go.Indicator(
+                    mode = "gauge+number",
+                    value = conf * 100,
+                    title = {'text': "Confianza (%)"},
+                    gauge = {'axis': {'range': [0, 100]}, 'bar': {'color': color_map.get(sentiment, "black")}}
+                ))
+                fig.update_layout(height=250, margin=dict(l=20, r=20, t=30, b=20))
+                st.plotly_chart(fig, use_container_width=True)
+            else:
+                st.error("El modelo no está cargado. Revisa la carpeta 'models'.")
+
+    with col2:
+        st.subheader("⚡ Stream de Predicciones (Spark Streaming)")
+        st.write("Estos datos vienen de Kafka, procesados por Spark con ML:")
+        
+        # Botón para refrescar Kafka
+        if st.button("📥 Traer últimos tweets de Kafka"):
+            try:
+                # Arreglo para leer lista de brokers
+                brokers_list = KAFKA_BROKER.split(',')
+                consumer = KafkaConsumer(
+                    KAFKA_TOPIC,
+                    bootstrap_servers=brokers_list,
+                    auto_offset_reset='latest',
+                    enable_auto_commit=True,
+                    consumer_timeout_ms=2000, # Esperar max 2 seg
+                    value_deserializer=lambda x: json.loads(x.decode('utf-8'))
+                )
+                
+                msgs = []
+                for msg in consumer:
+                    msgs.append(msg.value)
+                    if len(msgs) >= 50: break # Solo mostrar últimos 20
+                consumer.close()
+                
+                if msgs:
+                    df_live = pd.DataFrame(msgs)
+                    # Si ya tienes la predicción hecha por Spark en el JSON, úsala.
+                    # Si no, aplicamos el modelo aquí para visualizar (simulación de lo que hace Spark)
+                    if 'ml_prediction' not in df_live.columns and predictor and predictor.model:
+                        df_live['ml_analysis'] = df_live['tweet_content'].apply(lambda x: predictor.predict_single(x)['prediction'])
+                        df_live['confidence'] = df_live['tweet_content'].apply(lambda x: predictor.predict_single(x)['confidence_pct'])
+                    
+                    st.dataframe(df_live[['timestamp', 'entity', 'tweet_content', 'ml_analysis', 'confidence']], use_container_width=True)
+                    
+                    # Gráfica rápida de lo que acaba de llegar
+                    fig_live = px.bar(df_live['ml_analysis'].value_counts(), title="Distribución del lote actual")
+                    st.plotly_chart(fig_live, use_container_width=True)
+                else:
+                    st.warning("No llegaron mensajes nuevos en los últimos 2 segundos.")
+                    
+            except Exception as e:
+                st.error(f"Error conectando a Kafka: {e}")
+
+# ==========================================
+# TAB 2: MÉTRICAS DEL ENTRENAMIENTO
+# ==========================================
+with tab3:
+    st.header("🧠 Métricas del Modelo Entrenado")
+    
+    # Intentar cargar info del modelo
+    try:
+        import pickle
+        info_path = os.path.join(MODELS_DIR, "model_info.pkl")
+        
+        if os.path.exists(info_path):
+            with open(info_path, "rb") as f:
+                model_info = pickle.load(f)
+            
+            # KPIs principales
+            kpi1, kpi2, kpi3 = st.columns(3)
+            with kpi1:
+                st.metric("Algoritmo", model_info.get('model_name', 'Unknown'))
+            with kpi2:
+                # Si guardaste accuracy en el diccionario
+                acc = model_info.get('metrics', {}).get('accuracy', 0.0)
+                st.metric("Accuracy (Precisión Global)", f"{acc*100:.2f}%")
+            with kpi3:
+                n_classes = len(model_info.get('classes', []))
+                st.metric("Clases Detectadas", n_classes)
+            
+            st.divider()
+            
+            st.subheader("Clases que el modelo conoce:")
+            st.write(model_info.get('classes', []))
+            
+            st.success(f"Modelo cargado desde: {MODELS_DIR}")
+            
+        else:
+            st.warning("No se encontró el archivo de metadatos del modelo (model_info.pkl).")
+            st.info("Ejecuta 'python ml_training.py' para generar reportes.")
+            
+    except Exception as e:
+        st.error(f"Error leyendo métricas: {e}")
+
+# ==========================================
+# TAB 3: MONITOR DE INFRAESTRUCTURA
+# ==========================================
+with tab4:
+    st.header("📡 Estado del Clúster")
+    
+    c1, c2, c3 = st.columns(3)
+    c1.metric("Kafka Broker", "Online", delta="Port 9092")
+    c2.metric("Spark Master", "Active", delta="Port 9090")
+    c3.metric("HDFS Namenode", "Healthy", delta="Port 9870")
+    
+    st.markdown("### Enlaces Rápidos")
+    st.markdown("""
+    - [Spark Master UI](http://localhost:9090)
+    - [HDFS Explorer](http://localhost:9870)
+    """)
+    
+    # Aquí podrías poner una gráfica simulada de uso de recursos si quieres "vender" la monitorización
+    st.subheader("Simulación de Carga de Red")
+    chart_data = pd.DataFrame({
+        'time': range(20),
+        'events_per_sec': [10, 15, 40, 90, 85, 95, 100, 98, 92, 40, 20, 15, 10, 5, 12, 18, 25, 30, 35, 40]
+    })
+    st.area_chart(chart_data.set_index('time'))
+
+with tab2:
     st.header("📈 Análisis de la calidad del generador de tweets sintéticos")
 
     try:

@@ -1,41 +1,30 @@
 version: "3.8"
 
 services:
-  # --- COORDENACIÓN (Punto Único de Fallo - "El Cerebro") ---
-  # Zookeeper es demasiado pesado para replicarlo (necesita 3). Si matan este, game over.
+  # --- INFRAESTRUCTURA BASE ---
   zookeeper:
     image: confluentinc/cp-zookeeper:7.5.0
-    hostname: zookeeper
-    container_name: zookeeper
-    ports:
-      - "2181:2181"
+    ports: ["2181:2181"]
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
       ZOOKEEPER_TICK_TIME: 2000
 
-  # --- INGESTA (Redundante) ---
   kafka-1:
     image: confluentinc/cp-kafka:7.5.0
-    hostname: kafka-1
-    container_name: kafka-1
-    ports:
-      - "9092:9092"
+    ports: ["9092:9092"]
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka-1:9092
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 2  # <--- CLAVE: Replica los offsets
-      KAFKA_DEFAULT_REPLICATION_FACTOR: 2        # <--- CLAVE: Replica los datos
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 2
+      KAFKA_DEFAULT_REPLICATION_FACTOR: 2
       KAFKA_MIN_IN_SYNC_REPLICAS: 1
-    depends_on:
-      - zookeeper
+      KAFKA_HEAP_OPTS: "-Xmx256M -Xms256M"
+    depends_on: [zookeeper]
 
   kafka-2:
     image: confluentinc/cp-kafka:7.5.0
-    hostname: kafka-2
-    container_name: kafka-2
-    ports:
-      - "9093:9092" # Puerto externo diferente
+    ports: ["9093:9092"]
     environment:
       KAFKA_BROKER_ID: 2
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
@@ -43,150 +32,147 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 2
       KAFKA_DEFAULT_REPLICATION_FACTOR: 2
       KAFKA_MIN_IN_SYNC_REPLICAS: 1
-    depends_on:
-      - zookeeper
+      KAFKA_HEAP_OPTS: "-Xmx256M -Xms256M"
+    depends_on: [zookeeper]
 
-  # --- ALMACENAMIENTO (Redundante en Data, no en Name) ---
   namenode:
     image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
     container_name: namenode
-    hostname: namenode
     environment:
       - CLUSTER_NAME=proyecto_oficial
-      - DFS_REPLICATION=2 # <--- CLAVE: Replica los bloques en 2 nodos
-    volumes:
-      - hadoop_namenode:/hadoop/dfs/name
-    ports:
-      - "9870:9870"
-      - "9000:9000"
-    env_file:
-      - ./hadoop.env
+      - DFS_REPLICATION=2
+    ports: ["9871:9870", "9000:9000"]
+    env_file: [./hadoop.env]
+    volumes: [hadoop_namenode:/hadoop/dfs/name]
 
   datanode-1:
     image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
-    container_name: datanode-1
-    hostname: datanode-1
     environment:
       - SERVICE_PRECONDITION=namenode:9870
       - CORE_CONF_fs_defaultFS=hdfs://namenode:9000
-    depends_on:
-      - namenode
-    ports:
-      - "9864:9864"
-    volumes:
-      - hadoop_datanode1:/hadoop/dfs/data
+    depends_on: [namenode]
+    volumes: [hadoop_datanode1:/hadoop/dfs/data]
 
   datanode-2:
     image: bde2020/hadoop-datanode:2.0.0-hadoop3.2.1-java8
-    container_name: datanode-2
-    hostname: datanode-2
     environment:
       - SERVICE_PRECONDITION=namenode:9870
       - CORE_CONF_fs_defaultFS=hdfs://namenode:9000
-    depends_on:
-      - namenode
-    ports:
-      - "9865:9864" # Puerto externo diferente
-    volumes:
-      - hadoop_datanode2:/hadoop/dfs/data
+    depends_on: [namenode]
+    volumes: [hadoop_datanode2:/hadoop/dfs/data]
 
-  # --- PROCESAMIENTO (Redundante en Workers) ---
+  # --- SPARK MODIFICADO (Con IA) ---
   spark-master:
-    image: apache/spark:3.5.0
+    build: 
+      context: ./spark-docker  # <--- USA LA NUEVA IMAGEN CON SCIKIT-LEARN
     hostname: spark-master
     container_name: spark-master
     environment:
       - SPARK_MODE=master
-    ports:
-      - "9090:8080"
-      - "7077:7077"
-    command: ["/opt/spark/bin/spark-class", "org.apache.spark.deploy.master.Master", "--ip", "0.0.0.0", "--port", "7077", "--webui-port", "8080"]
-
-  spark-worker-1:
-    image: apache/spark:3.5.0
-    container_name: spark-worker-1
-    depends_on:
-      - spark-master
-    environment:
-      - SPARK_MODE=worker
-      - SPARK_MASTER=spark://spark-master:7077
-      - SPARK_WORKER_CORES=1
-      - SPARK_WORKER_MEMORY=768m # Memoria ajustada
       - SPARK_RPC_AUTHENTICATION_ENABLED=no
       - SPARK_RPC_ENCRYPTION_ENABLED=no
       - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
       - SPARK_SSL_ENABLED=no
+    ports: ["9090:8080", "7077:7077"]
+    volumes:
+      - ./models:/opt/spark/models  # Compartir carpeta de modelos
+    command: ["/opt/spark/bin/spark-class", "org.apache.spark.deploy.master.Master", "--ip", "0.0.0.0", "--port", "7077", "--webui-port", "8080"]
 
-    command: ["/opt/spark/bin/spark-class", "org.apache.spark.deploy.worker.Worker", "spark://spark-master:7077"] 
-
-  spark-worker-2:
-    image: apache/spark:3.5.0
-    container_name: spark-worker-2
-    depends_on:
-      - spark-master
+  spark-worker-1:
+    build: 
+      context: ./spark-docker # <--- USA LA NUEVA IMAGEN
+    hostname: spark-worker-1
+    container_name: spark-worker-1
+    depends_on: [spark-master]
     environment:
       - SPARK_MODE=worker
       - SPARK_MASTER=spark://spark-master:7077
       - SPARK_WORKER_CORES=1
-      - SPARK_WORKER_MEMORY=768m # Memoria ajustada
+      - SPARK_WORKER_MEMORY=512m
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+      - SPARK_SSL_ENABLED=no
+    volumes:
+      - ./models:/opt/spark/models
+    command: ["/opt/spark/bin/spark-class", "org.apache.spark.deploy.worker.Worker", "spark://spark-master:7077"]
 
-  # --- APLICACIÓN ---
+  spark-worker-2:
+    build: 
+      context: ./spark-docker # <--- USA LA NUEVA IMAGEN
+    hostname: spark-worker-2
+    container_name: spark-worker-2
+    depends_on: [spark-master]
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER=spark://spark-master:7077
+      - SPARK_WORKER_CORES=1
+      - SPARK_WORKER_MEMORY=512m
+      - SPARK_RPC_AUTHENTICATION_ENABLED=no
+      - SPARK_RPC_ENCRYPTION_ENABLED=no
+      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
+      - SPARK_SSL_ENABLED=no
+    volumes:
+      - ./models:/opt/spark/models
+    command: ["/opt/spark/bin/spark-class", "org.apache.spark.deploy.worker.Worker", "spark://spark-master:7077"]
+
   spark-streaming:
-    image: apache/spark:3.5.0
+    build: 
+      context: ./spark-docker # <--- USA LA NUEVA IMAGEN
+    hostname: spark-streaming
     container_name: spark-streaming
-    depends_on:
-      - kafka-1
-      - kafka-2
-      - spark-master
-      - namenode
+    depends_on: [kafka-1, kafka-2, spark-master, namenode]
+    user: root
     environment:
       - SPARK_MASTER=spark://spark-master:7077
-      # Apuntamos a ambos brokers
-      - KAFKA_BROKER=kafka-1:9092,kafka-2:9092 
+      - KAFKA_BROKER=kafka-1:9092,kafka-2:9092
       - KAFKA_TOPIC=raw_tweets
-      - HDFS_OUTPUT_PATH=hdfs://namenode:9000/user/sentiment_analysis/streaming_results
+      - HDFS_OUTPUT_PATH=hdfs://namenode:9000/user/sentiment_analysis/ml_results
     volumes:
-      - ./spark_streaming.py:/opt/spark/work-dir/spark_streaming.py
-      - ./ivy_cache:/tmp/.ivy2
-    command:
-      [
-        "/opt/spark/bin/spark-submit",
-        "--master", "spark://spark-master:7077",
-        "--packages", "org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.0",
-        "/opt/spark/work-dir/spark_streaming.py"
-      ]
+      - ./spark_ml_streaming.py:/opt/spark/work-dir/spark_ml_streaming.py
+      - ./ml_prediction.py:/opt/spark/work-dir/ml_prediction.py
+      - ./models:/opt/spark/models
+    command: >
+      bash -c "pip install --no-cache-dir scikit-learn pandas numpy &&
+      /opt/spark/bin/spark-submit 
+      --master spark://spark-master:7077 
+      --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.5.0 
+      --conf spark.hadoop.dfs.replication=2 
+      --conf spark.driver.memory=450m 
+      --conf spark.executor.memory=450m 
+      --py-files /opt/spark/work-dir/ml_prediction.py 
+      /opt/spark/work-dir/spark_ml_streaming.py"
 
+  # --- TUS APPS MODIFICADAS ---
   tweet-producer:
     build:
-      context: ./app-scripts-producer
+      context: ./app-scripts-producer  # Mantiene tu Dockerfile original
       dockerfile: Dockerfile
     container_name: tweet-producer
     command: ["python", "data_generator.py"]
-    depends_on:
-      - kafka-1
-      - kafka-2
+    depends_on: [kafka-1, kafka-2]
+    restart: on-failure
     environment:
-      - KAFKA_BROKER=kafka-1:9092,kafka-2:9092 # Ambos brokers
+      - KAFKA_BROKER=kafka-1:9092,kafka-2:9092
       - KAFKA_TOPIC=raw_tweets
     volumes:
       - ./data:/app/data
 
   streamlit-app:
     build:
-      context: ./app-dashboard
+      context: ./app-dashboard  # Mantiene tu Dockerfile original
       dockerfile: Dockerfile
     container_name: streamlit-app
-    ports:
-      - "8601:8501"
-    depends_on:
-      - kafka-1
-      - kafka-2
-      - namenode
+    ports: ["8601:8501"]
+    depends_on: [kafka-1, namenode]
     environment:
-      - KAFKA_BROKER=kafka-1:9092,kafka-2:9092 # Ambos brokers
+      - KAFKA_BROKER=kafka-1:9092,kafka-2:9092
       - KAFKA_TOPIC=raw_tweets
+      - MODELS_DIR=/app/models
     volumes:
       - ./app-dashboard:/app
+      - ./ml_prediction.py:/app/ml_prediction.py
+      - ./models:/app/models
       - ./data:/app/data
 
 volumes:
