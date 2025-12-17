@@ -132,6 +132,8 @@ services:
       - ./spark_ml_streaming.py:/opt/spark/work-dir/spark_ml_streaming.py
       - ./ml_prediction.py:/opt/spark/work-dir/ml_prediction.py
       - ./models:/opt/spark/models
+      - pip_cache:/root/.cache/pip  # Caché de Python
+      - ivy_cache:/root/.ivy2
     command: >
       bash -c "pip install --no-cache-dir scikit-learn pandas numpy &&
       /opt/spark/bin/spark-submit 
@@ -179,3 +181,5 @@ volumes:
   hadoop_namenode:
   hadoop_datanode1:
   hadoop_datanode2:
+  pip_cache:  # (El que ya tenías para Python)
+  ivy_cache: 
